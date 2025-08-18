@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+
+    <title>To Do List</title>
+
+    <style>
+      .completed {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mx-auto mt-2">To Do List</h1>
+      <!-- task input form -->
+      <div class="input-group my-5">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Add your task"
+          aria-label="Recipient's username"
+          aria-describedby="button-addon2"
+          id="task-input"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="add-btn"
+            onclick="addTask()"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+      <!-- show tasks-->
+      <div class="input-group mb-3">
+        <div id="task-list" class="mb-5"></div>
+      </div>
+
+      <div>
+        <a href="" id="show-all">Show All Task | </a>
+        <a href="" id="show-complete">Show Completed Task | </a>
+        <a href="" id="show-pending">Show Not Completed Task | </a>
+      </div>
+    </div>
+
+    <script>
+      var taskInput = document.getElementById("task-input");
+      var addBtn = document.getElementById("addBtn");
+
+      // asign empty array
+      var taskArray = [];
+
+      // task add
+      const addTask = () => {
+        const taskValue = taskInput.value.trim();
+        if (!taskValue) {
+          alert("Type your task");
+          return;
+        }
+        taskArray.push({
+          id: Date.now(),
+          title: taskValue,
+          isCompleted: false,
+        });
+        // check localstorage and store
+        if (localStorage.getItem("tasks") !== null) {
+          const prevTasks = JSON.parse(localStorage.getItem("tasks"));
+          const totalTasks = [...prevTasks, ...taskArray];
+          localStorage.setItem("tasks", JSON.stringify(totalTasks));
+        } else {
+          localStorage.setItem("tasks", JSON.stringify(taskArray));
+        }
+        window.location.reload();
+      };
+
+      // task completed mark
+      const doneTask = (id) => {
+        const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+
+        const updateTasks = storedTasks.map((task) => {
+          return task.id === id
+            ? { ...task, isCompleted: true, completedAt: Date.now() }
+            : task;
+        });
+        localStorage.setItem("tasks", JSON.stringify(updateTasks));
+        window.location.reload();
+      };
+
+      // check store tasks and show in the list
+      const renderTasks = (chooseFilter = "all") => {
+        const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+        let filterTasks = storedTasks;
+
+        if (chooseFilter === "complete") {
+          filterTasks = storedTasks.filter((task) => task.isCompleted === true);
+        } else if (chooseFilter === "pending") {
+          filterTasks = storedTasks.filter(
+            (task) => task.isCompleted === false
+          );
+        }
+
+        let taskListHTML = `<ul>${filterTasks
+          .map(
+            (task) => `<div class="input-group-prepend mb-2">
+          <div class="input-group-text">
+            <input
+              type="checkbox"
+              ${task.isCompleted ? "checked disabled" : ""}
+              aria-label="Checkbox for following text input"
+              onchange=(doneTask(${task.id}))
+            />
+          </div>
+          <h5 class="ml-3 ${task.isCompleted ? "completed" : ""}">${
+              task.title
+            }</h5>
+        </div>`
+          )
+          .join(" ")}</ul>`;
+
+        document.getElementById("task-list").innerHTML = taskListHTML;
+      };
+
+      // click for show all
+      document.getElementById("show-all").addEventListener("click", (e) => {
+        e.preventDefault();
+        renderTasks("all");
+      });
+
+      // click for show complete
+      document
+        .getElementById("show-complete")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          renderTasks("complete");
+        });
+        
+      // click for show pending
+      document.getElementById("show-pending").addEventListener("click", (e) => {
+        e.preventDefault();
+        renderTasks("pending");
+      });
+
+      renderTasks("all");
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
