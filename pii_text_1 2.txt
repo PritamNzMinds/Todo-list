@@ -1,0 +1,44 @@
+1.	Name: Kevin White
+	Credit Card Number: 4929 1234 5678 5678 (Visa)
+	Social Security Number (SSN): 852-96-7410
+	Vehicle Identification Number (VIN): 1HGCM82633A123789
+	Phone Number: +27 11 123 4567
+	Email Address: kevin.white@gmail.com
+	AWS Access Key: AKIATCKASHOQWFX6EBBX
+	MAC Address: 00:AF:BF:CG:DH
+
+2.	Name: Laura Green
+	Credit Card Number: 3782 123456 78967 (American Express)
+	Social Security Number (SSN): 741-85-9632
+	Vehicle Identification Number (VIN): 1HGCM82633A134890
+	Phone Number: +34 91 123 4567
+	Email Address: laura.green@outlook.com
+	AWS Access Key: AKIATCKASHOQWFX6EBCX
+	MAC Address: 00:BF:CG:DH:EI
+
+3.	Name: Michael Brown
+	Credit Card Number: 6011 1234 5678 1234 (Discover)
+	Social Security Number (SSN): 963-25-8741
+	Vehicle Identification Number (VIN): 1HGCM82633A145901
+	Phone Number: +55 21 1234 5678
+	Email Address: michael.brown@example.com
+	AWS Access Key: AKIATCKASHOQWFX6EBDX
+	MAC Address: 00:CG:DH:EI:FA
+
+4.	Name: Nancy Parker
+	Credit Card Number: 5134 5678 9012 3456 (MasterCard)
+	Social Security Number (SSN): 852-14-7896
+	Vehicle Identification Number (VIN): 1HGCM82633A156012
+	Phone Number: +61 8 1234 5678
+	Email Address: nancy.parker@yahoo.com
+	AWS Access Key: AKIATCKASHOQWFX6EBDY
+	MAC Address: 00:DH:EI:FA:GB
+
+5.	Name: Oliver Scott
+	Credit Card Number: 3714 123456 78967 (American Express)
+	Social Security Number (SSN): 753-48-6219
+	Vehicle Identification Number (VIN): 1HGCM82633A167123
+	Phone Number: +64 9 123 4567
+	Email Address: oliver.scott@gmail.com
+	AWS Access Key: AKIATCKASHOQWFX6EBEY
+	MAC Address: 00:EI:FA:GB:HC
